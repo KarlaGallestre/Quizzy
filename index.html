@@ -1,0 +1,525 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Quizzy - Learn, Practice, and Check your knowledge through interactive quizzes.">
+
+    <title>Quizzy - Learn, Practice, Check</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<bo
+<header class="site-header">
+
+    <div class="brand">
+        <h1>Quizzy<span>.</span></h1>
+        <p>Learn • Practice • Check</p>
+    </div>
+
+    <button
+    class="menu-toggle"
+    id="menuToggle"
+    type="button"    onclick="document.getElementById('mainMenu').classList.toggle('show')">
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
+
+    <nav class="nav-menu" id="mainMenu">
+
+        <button onclick="showPage('faqPage')">
+            💡 Frequently Asked Questions (FAQ)
+        </button>
+
+        <button onclick="showPage('feedbackPage')">
+            💬 Feedback / Report a Problem
+        </button>
+
+        <button onclick="showPage('aboutPage')">
+            ℹ️ About Us
+        </button>
+
+        <button onclick="showPage('contactPage')">
+            ✉️ Contact Us
+        </button>
+
+        <button onclick="showPage('privacyPage')">
+            🔒 Privacy Policy
+        </button>
+
+        <button onclick="showPage('termsPage')">
+            📄 Terms & Conditions
+        </button>
+
+    </nav>
+
+</header>
+
+<main>
+
+    <!-- HOME PAGE -->
+    <section id="home" class="page active">
+
+        <h2>Welcome to Quizzy!</h2>
+
+        <p>Choose what you want to do.</p>
+
+        <div class="choice-container">
+
+            <button onclick="showPage('quizPage')">
+                <h3>Quizzy</h3>
+                <p>Practice your knowledge by subject.</p>
+            </button>
+
+            <button onclick="showPage('checkerPage')">
+                <h3>Quizzy Checker</h3>
+                <p>Upload or type a questionnaire and check answers.</p>
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUIZZY PAGE -->
+    <section id="quizPage" class="page">
+
+        <button class="back-btn" onclick="showPage('home')">
+            ← Back
+        </button>
+
+        <h2>Quizzy – 1st Year</h2>
+
+        <label for="semester">Select Semester</label>
+
+        <select id="semester" onchange="loadSubjects()">
+
+            <option value="First Semester">First Semester</option>
+
+            <option value="Second Semester">Second Semester</option>
+
+        </select>
+
+
+        <label for="subject">Select Subject</label>
+
+        <!-- ONE SUBJECT DROPDOWN ONLY -->
+        <select id="subject">
+
+            <option value="">Choose a subject</option>
+
+        </select>
+
+
+        <button onclick="startQuiz()">Start Quiz</button>
+
+
+        <div id="quizArea" hidden>
+
+            <h3 id="quizTitle"></h3>
+
+            <p id="questionNumber"></p>
+
+            <div id="questionText"></div>
+
+            <div id="choices"></div>
+
+            <button id="nextBtn" onclick="nextQuestion()">
+                Next
+            </button>
+
+        </div>
+
+        <div id="quizResult"></div>
+
+    </section>
+
+
+    <!-- QUIZZY CHECKER PAGE -->
+    <section id="checkerPage" class="page">
+
+        <button class="back-btn" onclick="showPage('home')">
+            ← Back
+        </button>
+
+        <h2>Quizzy Checker</h2>
+
+        <h3>1. Upload Questionnaire</h3>
+
+        <p class="hint">
+            Make sure your picture is clear and not blurry.
+        </p>
+
+        <input
+            type="file"
+            id="questionImage"
+            accept="image/*">
+
+        <img
+            id="imagePreview"
+            hidden
+            alt="Questionnaire preview">
+
+        <button onclick="scanQuestionnaire()">
+            Scan Image (OCR)
+        </button>
+
+        <p id="ocrStatus"></p>
+
+
+        <h3>2. Type or Edit Questions</h3>
+
+        <textarea
+            id="questionList"
+            rows="8"
+            placeholder="Enter one question per line..."></textarea>
+
+
+        <h3>3. Enter Answer Key</h3>
+
+        <p class="hint">
+            Enter one correct answer per line.
+        </p>
+
+        <textarea
+            id="answerKey"
+            rows="6"
+            placeholder="Example:&#10;Manila&#10;10&#10;Mars"></textarea>
+
+
+        <h3>4. Enter Student Answers</h3>
+
+        <textarea
+            id="studentAnswers"
+            rows="6"
+            placeholder="Enter student answers, one per line..."></textarea>
+
+
+        <button onclick="checkAnswers()">
+            Check Answers
+        </button>
+
+        <div id="checkerResult"></div>
+
+    </section>
+
+
+    <!-- FAQ PAGE -->
+    <section id="faqPage" class="page">
+
+        <button class="back-btn" onclick="showPage('home')">
+            ← Back
+        </button>
+
+        <h2>💡 Frequently Asked Questions</h2>
+
+        <h3>1. What is Quizzy?</h3>
+        <p>
+            Quizzy is an educational website that helps students
+            practice their knowledge through quizzes.
+        </p>
+
+        <h3>2. How do I start a quiz?</h3>
+        <p>
+            Go to Quizzy, select your semester and subject,
+            then click Start Quiz.
+        </p>
+
+        <h3>3. What is Quizzy Checker?</h3>
+        <p>
+            Quizzy Checker allows users to enter questions,
+            answer keys, and student answers to check results.
+        </p>
+
+        <h3>4. Can I upload a questionnaire image?</h3>
+        <p>
+            Yes. You can upload an image and use the OCR feature
+            to recognize its text.
+        </p>
+
+        <h3>5. Is Quizzy free to use?</h3>
+        <p>
+            Quizzy is intended to provide accessible learning
+            and practice activities for students.
+        </p>
+
+    </section>
+
+
+    <!-- FEEDBACK PAGE -->
+    <section id="feedbackPage" class="page">
+
+        <button class="back-btn" onclick="showPage('home')">
+            ← Back
+        </button>
+
+        <h2>💬 Feedback / Report a Problem</h2>
+
+        <p>
+            We welcome your feedback and suggestions to help
+            improve Quizzy.
+        </p>
+
+        <p>
+            If you experience a problem while using the website,
+            please contact the website administrator.
+        </p>
+
+        <h3>What can you report?</h3>
+
+        <ul>
+            <li>Quiz questions that do not load</li>
+            <li>Buttons that do not work</li>
+            <li>Incorrect website information</li>
+            <li>Suggestions for new features</li>
+        </ul>
+
+    </section>
+
+
+    <!-- ABOUT PAGE -->
+    <section id="aboutPage" class="page">
+
+        <button class="back-btn" onclick="showPage('home')">
+            ← Back
+        </button>
+
+        <h2>About Us</h2>
+
+        <h3>Welcome to Quizzy!</h3>
+
+        <p>
+            Quizzy is an educational website designed to help
+            students practice their knowledge and improve
+            their learning.
+        </p>
+
+        <h3>Our Mission</h3>
+
+        <p>
+            Our mission is to provide a simple and accessible
+            learning platform where students can practice
+            quizzes and check their answers.
+        </p>
+
+        <h3>Our Features</h3>
+
+        <ul>
+            <li>Subject-based quizzes</li>
+            <li>Random questions</li>
+            <li>Quiz scores and answer reviews</li>
+            <li>Questionnaire image upload</li>
+            <li>OCR text recognition</li>
+            <li>Manual answer checking</li>
+        </ul>
+
+    </section>
+
+
+    <!-- CONTACT PAGE -->
+    <section id="contactPage" class="page">
+
+        <button class="back-btn" onclick="showPage('home')">
+            ← Back
+        </button>
+
+        <h2>Contact Us</h2>
+
+        <p>
+            Have questions or suggestions about Quizzy?
+            You can contact the website administrator.
+        </p>
+
+        <h3>Contact Information</h3>
+
+        <p><strong>Email Addresses:</strong></p>
+
+        <ul>
+            <li>
+                <a href="mailto:karlapacis24@gmail.com">
+                    karlapacis24@gmail.com
+                </a>
+            </li>
+
+            <li>
+                <a href="mailto:gallestrediana@gmail.com">
+                    gallestrediana@gmail.com
+                </a>
+            </li>
+
+            <li>
+                <a href="mailto:angeltulagan410@gmail.com">
+                    angeltulagan410@gmail.com
+                </a>
+            </li>
+        </ul>
+
+        <p><strong>Contact Numbers:</strong></p>
+
+        <ul>
+            <li><a href="tel:09655137118">09655137118</a></li>
+            <li><a href="tel:09629610418">09629610418</a></li>
+            <li><a href="tel:09269674951">09269674951</a></li>
+        </ul>
+
+    </section>
+
+
+    <!-- PRIVACY POLICY PAGE -->
+    <section id="privacyPage" class="page">
+
+        <button class="back-btn" onclick="showPage('home')">
+            ← Back
+        </button>
+
+        <h2>Privacy Policy</h2>
+
+        <p>Last updated: November 2026</p>
+
+        <h3>Information We Collect</h3>
+
+        <p>
+            Quizzy may process information entered by users,
+            including questions, answer keys, and student answers.
+        </p>
+
+        <h3>Uploaded Images</h3>
+
+        <p>
+            Uploaded questionnaire images are processed by the OCR
+            feature to extract text. Users should avoid uploading
+            sensitive personal information.
+        </p>
+
+        <h3>Cookies</h3>
+
+        <p>
+            Third-party services may use cookies and similar
+            technologies according to their own privacy policies.
+        </p>
+
+        <h3>Advertising</h3>
+
+        <p>
+            Quizzy may use advertising services in the future.
+            These services may use cookies to display relevant ads.
+        </p>
+
+        <h3>Data Protection</h3>
+
+        <p>
+            We aim to protect user information and improve the
+            safety and reliability of the website.
+        </p>
+
+        <h3>Contact</h3>
+
+        <p>
+            For privacy-related questions, contact the website
+            administrator through the official contact information.
+        </p>
+
+    </section>
+
+
+    <!-- TERMS AND CONDITIONS PAGE -->
+    <section id="termsPage" class="page">
+
+        <button class="back-btn" onclick="showPage('home')">
+            ← Back
+        </button>
+
+        <h2>📄 Terms & Conditions</h2>
+
+        <h3>1. Use of Website</h3>
+
+        <p>
+            Quizzy is intended for educational and practice purposes.
+            Users should use the website responsibly.
+        </p>
+
+        <h3>2. Quiz Results</h3>
+
+        <p>
+            Quiz results are provided for learning and practice.
+            Users should review their answers to understand their mistakes.
+        </p>
+
+        <h3>3. Uploaded Content</h3>
+
+        <p>
+            Users should only upload images and content they are
+            allowed to use. Avoid uploading sensitive personal information.
+        </p>
+
+        <h3>4. Website Availability</h3>
+
+        <p>
+            Features may be updated, changed, or temporarily unavailable
+            while the website is being improved.
+        </p>
+
+        <h3>5. Contact</h3>
+
+        <p>
+            For questions about these terms, contact the website
+            administrator.
+        </p>
+
+    </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <p>© 2026 Quizzy. Learn and improve every day.</p>
+
+    <div class="footer-links">
+
+        <a href="#" onclick="showPage('faqPage'); return false;">
+            FAQ
+        </a>
+
+        <a href="#" onclick="showPage('aboutPage'); return false;">
+            About Us
+        </a>
+
+        <a href="#" onclick="showPage('contactPage'); return false;">
+            Contact Us
+        </a>
+
+        <a href="#" onclick="showPage('privacyPage'); return false;">
+            Privacy Policy
+        </a>
+
+        <a href="#" onclick="showPage('termsPage'); return false;">
+            Terms & Conditions
+        </a>
+
+    </div>
+
+</footer>
+
+
+<!-- OCR LIBRARY -->
+<script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+
+<!-- QUIZZY JAVASCRIPT -->
+<script src="script.js"></script>
+
+<!-- LOAD FIRST SEMESTER SUBJECTS ON STARTUP -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    if (typeof loadSubjects === "function") {
+        loadSubjects();
+    }
+});
+</script>
+
+</body>
+</html>

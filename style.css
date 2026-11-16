@@ -1,0 +1,487 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #ECFDF5;
+    color: #29213f;
+    min-height: 100vh;
+}
+
+main {
+    width: 92%;
+    max-width: 850px;
+    margin: 25px auto;
+}
+
+.site-header {
+    background: #A7F3D0;
+    min-height: 180px;
+    padding: 40px 15px 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.brand {
+    width: 100%;
+    text-align: center;
+}
+
+.brand h1 {
+    color: #000000;
+    font-size: 32px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.brand h1 span {
+    color: #000000;
+}
+
+.brand p {
+    color: #000000;
+    font-size: 17px;
+    margin-top: 8px;
+    line-height: 1.4;
+}
+
+/* ======================================
+   HAMBURGER MENU
+====================================== */
+
+.menu-toggle {
+    position: absolute;
+    top: 18px;
+    right: 5%;
+    width: 46px;
+    height: 46px;
+    padding: 10px !important;
+    margin: 0 !important;
+    background: #0F766E;
+    border: none;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: white;
+    border-radius: 5px;
+}
+
+.menu-toggle:hover {
+    background: #115E59;
+}
+
+/* DROPDOWN */
+
+.nav-menu {
+    display: none;
+    flex-direction: column;
+    gap: 8px;
+    position: absolute;
+    top: 72px;
+    right: 5%;
+    width: 245px;
+    max-width: 90%;
+    padding: 12px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.18);
+    z-index: 1000;
+}
+
+.nav-menu.active {
+    display: flex !important;
+
+}
+
+.nav-menu button {
+    width: 100%;
+    background: #D1FAE5;
+    color: #064E3B;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: left;
+    font-size: 14px;
+    margin: 0;
+}
+
+.nav-menu button:hover {
+    background: #A7F3D0;
+}
+
+/* ======================================
+   PAGES AND CARDS
+====================================== */
+
+.page {
+    display: none;
+    background: white;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.page.active {
+    display: block;
+}
+
+h2 {
+    color: #166534;
+    margin: 15px 0;
+    font-size: 27px;
+}
+
+h3 {
+    color: #166534;
+    margin: 18px 0 10px;
+    font-size: 19px;
+}
+
+p {
+    line-height: 1.5;
+}
+
+/* ======================================
+   HOME PAGE
+====================================== */
+
+.choice-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 25px;
+}
+
+.choice-container button {
+    min-height: 140px;
+    padding: 20px;
+    text-align: left;
+    background: #DCFCE7;
+    color: #064E3B;
+    border: 2px solid #86EFAC;
+    border-radius: 12px;
+}
+
+.choice-container button h3 {
+    color: #064E3B;
+}
+
+.choice-container button:hover {
+    background: #BBF7D0;
+}
+
+/* ======================================
+   ALL BUTTONS
+====================================== */
+
+button {
+    background: #15803D;
+    color: white;
+    border: none;
+    padding: 13px 18px;
+    border-radius: 9px;
+    cursor: pointer;
+    margin: 10px 0;
+    font-size: 15px;
+}
+
+button:hover {
+    background: #166534;
+}
+
+.back-btn {
+    background: #4B5563;
+}
+
+.back-btn:hover {
+    background: #374151;
+}
+
+/* ======================================
+   FORMS
+====================================== */
+
+label {
+    display: block;
+    margin: 18px 0 7px;
+    font-weight: bold;
+}
+
+select,
+textarea,
+input[type="file"] {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #86EFAC;
+    border-radius: 9px;
+    background: white;
+    font-size: 15px;
+    margin-top: 8px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.hint {
+    color: #6B7280;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+/* ======================================
+   QUIZ AREA
+====================================== */
+
+#quizArea {
+    margin-top: 25px;
+    border-top: 1px solid #A7F3D0;
+    padding-top: 20px;
+}
+
+#questionText {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 18px 0;
+}
+
+/* Answer choices */
+
+.choice-option,
+.choice-btn {
+    display: block;
+    width: 100%;
+    text-align: left;
+    background: #DCFCE7;
+    color: #064E3B;
+    border: 1px solid #86EFAC;
+    border-radius: 10px;
+    padding: 14px;
+    margin: 8px 0;
+}
+
+.choice-option:hover,
+.choice-btn:hover {
+    background: #BBF7D0;
+}
+
+.choice-option.selected,
+.choice-btn.selected {
+    background: #166534;
+    color: white;
+}
+
+.choice-option:disabled,
+.choice-btn:disabled {
+    opacity: 0.8;
+    cursor: default;
+}
+
+/* Next button */
+
+#nextBtn {
+    background: #15803D;
+    color: white;
+}
+
+#nextBtn:hover {
+    background: #166534;
+}
+
+/* ======================================
+   IMAGE PREVIEW
+====================================== */
+
+#imagePreview {
+    display: block;
+    max-width: 100%;
+    max-height: 350px;
+    margin: 15px auto;
+    border-radius: 10px;
+}
+
+#imagePreview[hidden] {
+    display: none;
+}
+
+/* ======================================
+   QUIZ RESULTS
+====================================== */
+
+#quizResult,
+#checkerResult {
+    margin-top: 20px;
+}
+
+.result-card {
+    background: #ECFDF5;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 10px 0;
+}
+
+.review-item {
+    padding: 12px;
+    border-bottom: 1px solid #D1D5DB;
+}
+
+.correct {
+    color: #15803D;
+    font-weight: bold;
+}
+
+.wrong {
+    color: #DC2626;
+    font-weight: bold;
+}
+
+/* ======================================
+   ABOUT, CONTACT AND PRIVACY
+====================================== */
+
+#aboutPage li,
+#privacyPage li,
+#contactPage li {
+    margin: 10px 0 10px 20px;
+    line-height: 1.5;
+}
+
+#aboutPage h3,
+#contactPage h3,
+#privacyPage h3 {
+    color: #166534;
+}
+
+#contactPage p {
+    margin-bottom: 12px;
+}
+
+#contactPage a {
+    color: #047857;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+}
+
+#contactPage a:hover {
+    text-decoration: underline;
+}
+
+/* ======================================
+   FOOTER
+====================================== */
+
+footer {
+    text-align: center;
+    color: #6B7280;
+    padding: 20px;
+    font-size: 13px;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 12px;
+}
+
+.footer-links a {
+    color: #047857;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+/* ======================================
+   MOBILE RESPONSIVE
+====================================== */
+
+@media (max-width: 600px) {
+
+    .site-header {
+        min-height: 175px;
+        padding: 45px 15px 25px;
+    }
+
+    .brand h1 {
+        font-size: 30px;
+    }
+
+    .brand p {
+        font-size: 16px;
+    }
+
+    .menu-toggle {
+        top: 15px;
+        right: 5%;
+    }
+
+    .nav-menu {
+        top: 70px;
+        right: 5%;
+        width: 230px;
+    }
+
+    main {
+        width: 92%;
+        margin: 20px auto;
+    }
+
+    .page {
+        padding: 18px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    .choice-container {
+        grid-template-columns: 1fr;
+    }
+
+    .choice-container button {
+        min-height: 120px;
+    }
+
+    .footer-links {
+        gap: 10px;
+    }
+}
+
+#menuToggle {
+    pointer-events: auto !important;
+    cursor: pointer;
+    z-index: 9999;
+}
+
+#mainMenu {
+    display: none;
+    pointer-events: auto;
+}
+
+#mainMenu.active {
+    display: flex !important;
+    flex-direction: column;
+}
+  
